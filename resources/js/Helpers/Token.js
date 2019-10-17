@@ -1,0 +1,19 @@
+class Token {
+    isValid(token){
+        const payload = this.payload(token);
+        if(payload){
+            return payload.iss == "http://localhost:8000/api/auth/login" || "http://localhost:8000/api/auth/signup" ? true : false
+        }
+
+        return false;
+    }
+    payload(token){
+        const  payload = token.split('.')[1];  //Get the payload
+        // `atob(payload)` This function decode the pay-load
+        return this.decodeToken(payload)
+    }
+    decodeToken(payload){
+        return JSON.parse(atob(payload))
+    }
+}
+export default Token = new Token();
