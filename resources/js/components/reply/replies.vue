@@ -5,10 +5,8 @@
                 :key="reply.id"
                 :index=index
                 :data="reply">
-
         </reply>
     </div>
-
 </template>
 
 <script>
@@ -29,7 +27,6 @@
                 EventBus.$on('newReply',(reply) => {
                     this.content.unshift(reply)
                 });
-
                 EventBus.$on('deleteReply',(index) => {
                     axios.delete(`/api/question/${this.question.slug}/reply/${this.content[index].id}`)
                         .then(res => {
