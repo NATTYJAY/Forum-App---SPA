@@ -13,6 +13,7 @@ class CreateRepliesTable extends Migration
      */
     public function up()
     {
+        if ( !Schema::hasTable('replies') ) {
         Schema::create('replies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('body');
@@ -21,6 +22,7 @@ class CreateRepliesTable extends Migration
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
             $table->timestamps();
         });
+    }
     }
 
     /**

@@ -13,6 +13,7 @@ class CreateQuestionsTable extends Migration
      */
     public function up()
     {
+        if ( !Schema::hasTable('questions') ) {
         Schema::create('questions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
@@ -22,6 +23,7 @@ class CreateQuestionsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
+    }
     }
 
     /**
