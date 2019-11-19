@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppNotificationController;
 use Illuminate\Http\Request;
 
 /*
@@ -12,16 +13,16 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
 Route::apiResource('/question','QuestionController');
 
 Route::apiResource('/category','CategoryController');
 
 Route::apiResource('/question/{question}/reply','ReplyController');
 
+Route::post('/notification','AppNotificationController@index');
+//Route::post('/notification', 'AppNotificationController@index');
 Route::post('/like/{reply}', 'LikeController@likeIt');
 Route::delete('/like/{reply}', 'LikeController@unLikeIt');
-
 
 Route::group([
 

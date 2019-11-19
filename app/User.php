@@ -2,15 +2,15 @@
 
 namespace App;
 
-use App\Model\Question;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Model\Question;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements  JWTSubject
+class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -19,6 +19,7 @@ class User extends Authenticatable implements  JWTSubject
     protected $fillable = [
         'name', 'email', 'password',
     ];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -33,6 +34,11 @@ class User extends Authenticatable implements  JWTSubject
         return $this->hasMany(Question::class);
     }
 
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
     public function getJWTIdentifier()
     {
         return $this->getKey();
@@ -48,7 +54,7 @@ class User extends Authenticatable implements  JWTSubject
         return [];
     }
 
-     public function setPasswordAttribute($value)
+    public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
     }
