@@ -6,8 +6,6 @@ class User{
             .then(res=> this.responseAfterLogin(res))
             .catch(error=>console.log(error.response.data))
     }
-
-
     responseAfterLogin(res) {
         const access_token = res.data.access_token
         const username = res.data.user;

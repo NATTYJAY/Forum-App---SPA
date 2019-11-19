@@ -29,9 +29,15 @@ const routes = [
         component: Create
     },
     {
+        path: '/',
+        component: Forum,
+        name:'forum'
+    },
+    {
         path: '/forum',
         component: Forum,
-        name:'forum'},
+        name:'forum'
+    },
     {
         path: '/question/:slug',
         component: Read,

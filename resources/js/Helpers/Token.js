@@ -4,7 +4,6 @@ class Token {
         if(payload){
             return payload.iss == "http://localhost:8000/api/auth/login" || "http://localhost:8000/api/auth/signup" ? true : false
         }
-
         return false;
     }
     payload(token){
@@ -13,7 +12,18 @@ class Token {
         return this.decodeToken(payload)
     }
     decodeToken(payload){
-        return JSON.parse(atob(payload))
+        if(this.isBase65(payload)){
+             return JSON.parse(atob(payload))
+        }
+        return false;
+    }
+    isBase65(str){
+        try{
+            return btoa(atob(str)).replace(/=/g,"") == str
+        }
+        catch(err){
+            return false
+        }
     }
 }
 export default Token = new Token();

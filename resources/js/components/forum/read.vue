@@ -12,7 +12,11 @@
         </show-question>
         <v-container>
             <replies :question="questions"></replies>
-            <new-reply :questionSlug="questions.slug"></new-reply>
+            <new-reply v-if="loggedIn" :questionSlug="questions.slug"></new-reply>
+               
+            <div class="mt-4" v-else >
+            <router-link to="/login">Login in to Reply</router-link>
+            </div>
         </v-container>
 
     </div>
@@ -30,7 +34,17 @@
                 editing:false
             }
         },
-        components:{showQuestion,EditQuestion,Replies,NewReply},
+        computed:{
+            loggedIn(){
+                return User.loggedIn();
+            }
+        },
+        components:{
+            showQuestion,
+            EditQuestion,
+            Replies,
+            NewReply
+        },
        created(){
             EventBus.$on('startEditing', ()=>{
                 this.editing = true;
