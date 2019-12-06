@@ -1,6 +1,8 @@
 <template>
-  <v-toolbar>
-    <v-toolbar-title>Socials</v-toolbar-title>
+  <v-toolbar color="blue" dark>
+    <v-toolbar-title>
+      <router-link class="white--text" to="/">SPA Forum</router-link>
+    </v-toolbar-title>
     <v-spacer></v-spacer>
    <app-notification></app-notification>
     <div class="hidden-sm-and-down">
@@ -21,7 +23,6 @@ import AppNotification from './AppNotification'
   export default {
         components:{AppNotification},
       data(){
-        
           return{
               items:[
                  
@@ -40,8 +41,6 @@ import AppNotification from './AppNotification'
                   {
                       title : 'Logout', to:'/logout', show: User.loggedIn()
                   }
-
-
               ]
           }
       },

@@ -48,7 +48,7 @@
             }
         },
         created(){
-            this.listen()
+            this.listen();
         },
         methods:{
             destroy(){

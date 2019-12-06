@@ -10,8 +10,13 @@ import Logout from '../components/login/logout'
 import Read from '../components/forum/read'
 import Create from '../components/forum/create'
 import CreateCategory from '../components/category/createCategory'
+import parralax from '../components/parallex'
 
 const routes = [
+    {
+        path: '/',
+        component: parralax
+    },
     {
         path: '/login',
         component: Login

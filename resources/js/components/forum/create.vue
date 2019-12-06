@@ -20,12 +20,10 @@
                     autocomplete
             ></v-select>
             <vue-simplemde v-model="form.body" ref="markdownEditor" />
-
-
-
             <v-btn
                     color="green"
                     type="submit"
+                    :disabled="disabled"
 
             >Create</v-btn>
         </v-form>
@@ -56,6 +54,11 @@
                     .catch(error => (this.errors = error.response.data.errors));
             }
         },
+         computed: {
+            disabled() {
+            return !(this.form.title && this.form.category_id && this.form.body);
+            }
+        }
     }
 </script>
 
